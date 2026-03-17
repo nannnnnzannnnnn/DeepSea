@@ -1,26 +1,27 @@
 package ds.content;
 
-import ds.content.blocks.dsBlocksLoader;
-import ds.content.items.dsItemLoader;
-import ds.content.liquids.piLiquids;
-import ds.content.planets.dsPlanets;
-import ds.content.planets.piSectors;
-import ds.content.units.piUnits;
+import ds.content.blocks.DSBlocksLoader;
+import ds.content.items.DSItemLoader;
+import ds.content.liquids.PiLiquids;
+import ds.content.planets.DSPlanets;
+import ds.content.planets.PiSectors;
+import ds.content.units.PiUnits;
 
 public class ContentLoader {
     public static void load(){
-        dsAttributes.load();
+        DSStatusEffects.load();
+        DSAttributes.load();
         SchematicsLoader.load();
-        dsSounds.load();
-        dsItemLoader.load();
+        DSSounds.load();
+        DSItemLoader.load();
 
-        piLiquids.load();
-        piUnits.loadUnits();
-        dsBlocksLoader.load();
+        PiLiquids.load();
+        PiUnits.loadUnits();
+        DSBlocksLoader.load();
 
         //end load
-        dsPlanets.loadContent();
-        piSectors.load();
-        pi312TechTree.load();
+        DSPlanets.loadContent();
+        PiSectors.load();
+        Pi312TechTree.load();
     }
 }

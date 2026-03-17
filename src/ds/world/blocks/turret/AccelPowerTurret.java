@@ -5,7 +5,7 @@ import arc.math.Mathf;
 import arc.util.Strings;
 import arc.util.io.Reads;
 import arc.util.io.Writes;
-import ds.world.meta.dsStats;
+import ds.world.meta.DSStats;
 import mindustry.entities.bullet.BulletType;
 import mindustry.graphics.Pal;
 import mindustry.ui.Bar;
@@ -15,7 +15,7 @@ import mindustry.world.meta.StatUnit;
 
 import static mindustry.Vars.tilesize;
 
-public class AccelPowerTurret extends dsPowerTurret {
+public class AccelPowerTurret extends DSPowerTurret {
     public float speedUpPerShoot = 2;
     public float maxAccel = 0.5f;
     public float cooldownSpeed = 1;
@@ -41,8 +41,8 @@ public class AccelPowerTurret extends dsPowerTurret {
     public void setStats(){
         super.setStats();
         stats.remove(Stat.reload);
-        stats.add(dsStats.acTurrReloadStart, reload / 60f, StatUnit.seconds);
-        stats.add(dsStats.acTurrReloadEnd, (reload / (maxAccel + 1.0f)) / 60f, StatUnit.seconds);
+        stats.add(DSStats.acTurrReloadStart, reload / 60f, StatUnit.seconds);
+        stats.add(DSStats.acTurrReloadEnd, (reload / (maxAccel + 1.0f)) / 60f, StatUnit.seconds);
     }
 
     public  class AccelTurretBuild extends PowerTurretBuild {

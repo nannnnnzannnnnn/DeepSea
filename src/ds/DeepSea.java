@@ -2,8 +2,8 @@ package ds;
 
 import arc.Events;
 import ds.content.ContentLoader;
-import ds.content.dsMusicLoader;
-import ds.world.graphics.dsEnvRenderers;
+import ds.content.DSMusicLoader;
+import ds.world.graphics.DSEnvRenderers;
 import mindustry.Vars;
 import mindustry.game.EventType;
 import mindustry.mod.*;
@@ -13,15 +13,20 @@ public class DeepSea extends Mod{
 
     @Override
     public void loadContent(){
+        DSMusicLoader.load();
         ContentLoader.load();
-        dsEnvRenderers.init();
+        DSEnvRenderers.init();
     }
 
     @Override
     public void init() {
+        DSMusicLoader.attach();
         if (!Vars.headless && Vars.ui != null) {
-            //Events.on(EventType.MusicRegisterEvent.class, e -> dsMusicLoader.load());
-            //Events.on(EventType.ClientLoadEvent.class, e -> dsMusicLoader.attach());
+            Events.on(EventType.ClientLoadEvent.class, e -> DSSetting.init());
+            Events.on(EventType.ClientLoadEvent.class, e -> {
+
+                DSSoundControl.loadSoundControl();
+            });
         }
     }
 }
