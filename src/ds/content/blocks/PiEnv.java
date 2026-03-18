@@ -187,7 +187,7 @@ public class PiEnv {
         fernAlphared = new TreeBlock("fern-alphared"){{
             variants = 4;
         }};
-        fernYellow = new TreeBlock("dead-yellowcoral-alt"){{
+        fernYellow = new TreeBlock("fern-yellow"){{
             variants = 4;
         }};
     }
