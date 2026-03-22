@@ -204,6 +204,7 @@ public class PiUnits {
                 lightCone = 15;
                 lightLength = 20 * tilesize;
                 shootSound = DSSounds.shootSmallWeapon;
+                shootSoundVolume = 0.45f;
                 bullet = new BasicBulletType(3.5f, 20){{
                     height = 13;
                     width = 10;

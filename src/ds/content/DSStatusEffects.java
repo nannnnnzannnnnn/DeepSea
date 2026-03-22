@@ -23,10 +23,10 @@ public class DSStatusEffects {
             @Override
             public void update(Unit unit, StatusEntry entry){
                 super.update(unit, entry);
-                if(unit.type instanceof SubmarineUnitType){
-                    unit.damage(0.2f * (unit.health / (unit.maxHealth / 2)));
-                    unit.speedMultiplier = Math.max(0.25f, unit.health / unit.maxHealth);
-                } else unit.damage(0.025f * (unit.health / (unit.maxHealth / 2)));
+                    if (unit.type instanceof SubmarineUnitType) {
+                        unit.damageContinuousPierce(0.2f * (unit.health / (unit.maxHealth / 1.5f)));
+                        unit.speedMultiplier = Math.max(0.25f, unit.health / unit.maxHealth);
+                    } else unit.damageContinuousPierce(0.025f * (unit.health / (unit.maxHealth / 1.15f)));
             }
         };
     }

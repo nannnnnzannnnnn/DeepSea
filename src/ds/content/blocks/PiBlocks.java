@@ -10,6 +10,7 @@ import ds.content.DSStatusEffects;
 import ds.content.units.PiUnits;
 import ds.world.blocks.crafting.DynamicCrafter;
 import ds.world.blocks.distribution.ClosedConveyor;
+import ds.world.blocks.power.AdvancedThermalGenerator;
 import ds.world.blocks.production.WallDrill;
 import ds.world.blocks.turret.AccelItemTurret;
 import ds.world.blocks.turret.AccelPowerTurret;
@@ -257,7 +258,7 @@ public class PiBlocks {
                 };
             }};
             ammo(
-                    aluminium, new BasicBulletType(8,19f){{
+                    aluminium, new BasicBulletType(8,24f){{
                         pierce = true;
                         pierceCap = 3;
                         lifetime = 30;
@@ -276,7 +277,7 @@ public class PiBlocks {
                         despawnEffect = Fx.hitBulletColor;
                         collidesGround = false;
                     }},
-                    silver, new BasicBulletType(12,15.25f){{
+                    silver, new BasicBulletType(12,19){{
                         pierce = true;
                         pierceCap = 2;
                         lifetime = 24;
@@ -297,7 +298,7 @@ public class PiBlocks {
                         despawnEffect = Fx.hitBulletColor;
                         collidesGround = false;
                     }},
-                    steel, new BasicBulletType(4,27){{
+                    steel, new BasicBulletType(4,32){{
                         lifetime = 60;
                         ammoMultiplier = 4;
                         frontColor = hitColor = Color.valueOf("ab7272");
@@ -542,8 +543,8 @@ public class PiBlocks {
             arrowSpacing = 5f;
             tier = 6;
             consumePower(3);
-            consumeLiquid(oxygen, 0.2f);
-            consumeLiquid(hydrogen, 0.4f);
+            consumeLiquid(oxygen, 0.1f);
+            consumeLiquid(hydrogen, 0.2f);
             shake = 4;
             drillSoundVolume = 1.4f;
             drillEffect = new MultiEffect(
@@ -594,7 +595,7 @@ public class PiBlocks {
             hasLiquids = true;
             drawer = new DrawMulti(new DrawRegion("-bottom"), new DrawLiquidTile(hydrogenSulfide), new DrawBlurSpin("-rotator", 6), new DrawDefault());
         }};
-        geothermalGenerator = new ThermalGenerator("geothermal-generator"){{
+        geothermalGenerator = new AdvancedThermalGenerator("geothermal-generator"){{
             requirements(Category.power, with(aluminium, 100, silver, 95, manganese, 65));
             size = 4;
             attribute = Attribute.heat;
@@ -802,7 +803,7 @@ public class PiBlocks {
             size = 3;
             consumePower(3);
             consumeLiquid(hydrogen, 0.25f);
-            consumeItems(with(aluminium, 45, silver, 30, graphite, 15));
+            consumeItems(with(aluminium, 45, graphite, 55, steel, 30));
             upgrades.addAll(
                     new UnitType[]{PiUnits.condition, PiUnits.oversight},
                     new UnitType[]{PiUnits.complicity, PiUnits.consequences},
