@@ -23,13 +23,15 @@ public class DeepSea extends Mod{
 
     @Override
     public void init() {
-        DSMusicLoader.attach();
+        //DSMusicLoader.attach();
         if (!Vars.headless && Vars.ui != null) {
             Events.on(EventType.ClientLoadEvent.class, e -> DSSetting.init());
+            /*
             Events.on(EventType.ClientLoadEvent.class, e -> {
 
                 DSSoundControl.loadSoundControl();
             });
+             */
         }
     }
 }
