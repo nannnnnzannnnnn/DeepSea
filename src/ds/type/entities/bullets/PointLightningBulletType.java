@@ -33,7 +33,7 @@ public class PointLightningBulletType extends BulletType {
     public float lightningWidth = 2.5f;
     public boolean createSubBolts = true; // создавать дополнительные молнии
     public int subBoltAmount = 3;
-    public float subBoltDamage = 0f; // урон дополнительных молний
+    public float subBoltDamage = -1f; // урон дополнительных молний
     public int subBoltLength = 10; // длина дополнительных молний
     public float hitChance = 1.0f; // шанс попадания
     public float boltRandomRange = 1.0f; // разброс ветвей молнии
@@ -100,13 +100,11 @@ public class PointLightningBulletType extends BulletType {
         if (Vars.headless) return;
 
         if (lightningNum < 1) {
-            // Простая молния
             Fx.chainLightning.at(from.x, from.y, 0, color, new Vec2().set(to));
         } else {
             float dst = from.dst(to);
 
             for (int i = 0; i < lightningNum; i++) {
-                // Создаем случайные изгибы как в PositionLightning
                 float len = getBoltRandomRange();
                 float randRange = len * boltRandomRange;
 
@@ -122,17 +120,11 @@ public class PointLightningBulletType extends BulletType {
                 points.each(pos -> {
                     // Свет в каждой точке с пульсацией
                     float lightRadius = lightningWidth * 4f + Mathf.random(2f);
-                    Drawf.light(pos.x, pos.y, lightRadius, color, 0.7f);
                 });
 
-                // Дополнительный свет в начале и конце
-                Drawf.light(from.x, from.y, lightningWidth * 6f, color, 0.8f);
-                Drawf.light(to.x, to.y, lightningWidth * 6f, color, 0.8f);
 
-                // Добавляем искры (как в createBoltEffect)
                 points.each(pos -> {
                     if (Mathf.chance(0.0855f)) {
-                        // Здесь можно добавить эффект искры
                         Fx.lightning.at(pos.x, pos.y, Mathf.random(2f + lightningWidth, 4f + lightningWidth), color);
                     }
                 });
@@ -144,7 +136,7 @@ public class PointLightningBulletType extends BulletType {
         // Создаем дополнительные молнии от точки попадания
         for (int i = 0; i < subBoltAmount; i++) {
             mindustry.entities.Lightning.create(b.team, lightningColor,
-                    subBoltDamage <= 0f ? damage : subBoltDamage,
+                    subBoltDamage < 0f ? damage : subBoltDamage,
                     x, y, Mathf.random(360f), subBoltLength);
         }
     }

@@ -149,10 +149,12 @@ public class DSStatValues extends StatValues {
                     if(type instanceof PointLightningBulletType){
                         sep(bt, Core.bundle.format("bullet.lightningNum", Strings.fixed(((PointLightningBulletType) type).lightningNum, 0)));
                         if(((PointLightningBulletType) type).createSubBolts) {
-                            sep(bt, Core.bundle.format("bullet.subLightNum", Strings.fixed(((PointLightningBulletType) type).subBoltAmount, 0)));
-                            if(((PointLightningBulletType) type).subBoltDamage != 0) {
-                                sep(bt, Core.bundle.format("bullet.subLightDamage", Strings.autoFixed(((PointLightningBulletType) type).subBoltDamage, 4)));
-                            } else sep(bt, Core.bundle.format("bullet.subLightDamage", Strings.autoFixed(type.damage, 4)));
+                            if(((PointLightningBulletType) type).subBoltDamage != 0) sep(bt, Core.bundle.format("bullet.subLightNum", Strings.fixed(((PointLightningBulletType) type).subBoltAmount, 0)));
+                            if(((PointLightningBulletType) type).subBoltDamage != -1) {
+                                if(((PointLightningBulletType) type).subBoltDamage != 0) sep(bt, Core.bundle.format("bullet.subLightDamage", Strings.autoFixed(((PointLightningBulletType) type).subBoltDamage, 4)));
+                            } else {
+                                sep(bt, Core.bundle.format("bullet.subLightDamage", Strings.autoFixed(type.damage, 4)));
+                            }
                         }
                     }
                     if(type instanceof HarpoonBulletType){

@@ -9,6 +9,7 @@ import arc.math.Interp;
 import arc.math.Mathf;
 import arc.math.Rand;
 import arc.math.geom.Vec2;
+import arc.struct.Seq;
 import arc.util.Tmp;
 import mindustry.entities.Effect;
 import mindustry.entities.effect.ParticleEffect;
@@ -39,6 +40,24 @@ public class DSFx {
             lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), e.fslope() * 5f + 0.5f);
         });
     }),
+            dslightning = new Effect(10f, 500f, e -> {
+                if(!(e.data instanceof Seq)) return;
+                Seq<Vec2> lines = e.data();
+
+                stroke(3f * e.fout());
+                color(e.color, Color.white, e.fin());
+
+                for(int i = 0; i < lines.size - 1; i++){
+                    Vec2 cur = lines.get(i);
+                    Vec2 next = lines.get(i + 1);
+                    Drawf.light(cur.x, cur.y, next.x, next.y, 5f * e.fout(Interp.circleOut), e.color, e.fout(Interp.circleOut));
+                    Lines.line(cur.x, cur.y, next.x, next.y, false);
+                }
+
+                for(Vec2 p : lines){
+                    Fill.circle(p.x, p.y, Lines.getStroke() / 2f);
+                }
+            }),
     dsMoveEffect = new Effect(45, e -> {
         color(Color.valueOf("e0f4ff"), Color.valueOf("bfe0f200"), e.fin());
         randLenVectors(e.id, 2, 30 * e.fin(),  e.rotation - 180,  85,(x, y)->{

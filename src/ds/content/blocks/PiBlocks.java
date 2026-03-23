@@ -225,6 +225,7 @@ public class PiBlocks {
                 hitColor = lightningColor;
                 hitEffect = Fx.colorSpark;
                 buildingDamageMultiplier = 0.1f;
+                subBoltDamage = 0;
             }};
         }};
 

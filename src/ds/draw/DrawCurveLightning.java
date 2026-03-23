@@ -4,6 +4,7 @@ import arc.graphics.Color;
 import arc.math.Mathf;
 import arc.math.geom.Vec2;
 import arc.struct.Seq;
+import ds.content.DSFx;
 import mindustry.content.Fx;
 
 public class DrawCurveLightning {
@@ -24,7 +25,7 @@ public class DrawCurveLightning {
 
         Seq<Vec2>newPoints = generateRandomDeviations(segLen, points, startPos,endPos);
 
-        Fx.lightning.at(startPos.x, startPos.y, rotation, color, newPoints);
+        DSFx.dslightning.at(startPos.x, startPos.y, rotation, color, newPoints);
     }
 
     private static Seq<Vec2> generateRandomDeviations(float segmentLength, Seq<Vec2>Points, Vec2 startPos, Vec2 endPos) {
