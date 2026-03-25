@@ -2,6 +2,8 @@ package ds.utilities;
 
 import arc.math.Mathf;
 import arc.math.geom.Vec2;
+import ds.content.blocks.PiEnv;
+import ds.world.meta.DSEnv;
 import mindustry.Vars;
 import mindustry.content.Blocks;
 import mindustry.world.Tile;
@@ -24,7 +26,7 @@ public class DSMath {
             int tileX = (int)(x / tilesize);
             int tileY = (int)(y / tilesize);
             Tile tile = Vars.world.tile(tileX, tileY);
-            if(tile != null && (tile.solid() && tile.floor() != Blocks.empty.asFloor())){
+            if(tile != null && (tile.solid() && tile.floor() != Blocks.empty.asFloor() &&  tile.floor() != PiEnv.geothermalRift.asFloor() )){
                 vec = new Vec2(x, y);
                 return vec;
             }
